@@ -41,6 +41,7 @@ public class WithoutSession2 implements Filter {
                 ((HttpServletResponse) servletResponse).setStatus(403);
             }
         }
+
     }
 
     @Override

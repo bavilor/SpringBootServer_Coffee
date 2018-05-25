@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -45,9 +46,9 @@ public class Decrypt {
     }
 
     //Decrypt order list
-    public List<Order> decryptOrder(byte[] byteOrder, SecretKey secretKey) throws Exception{
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS7Padding", "BC");
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+    public List<Order> decryptOrder(byte[] byteOrder, SecretKey secretKey, byte[] byteIV) throws Exception{
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(byteIV));
 
         byte[] decrBytes = cipher.doFinal(byteOrder);
 
@@ -58,5 +59,12 @@ public class Decrypt {
 
         Order[] orders = new Gson().fromJson(s, Order[].class);
         return Arrays.asList(orders);
+    }
+
+    //Decrypt iv
+    public byte[] decryptIV(byte[] encByteIv) throws Exception{
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
+        cipher.init(Cipher.DECRYPT_MODE, keyGen.getPrivateKey());
+        return cipher.doFinal(encByteIv);
     }
 }

@@ -44,10 +44,11 @@ public class WithSession3 implements Filter {
                     ((HttpServletResponse) servletResponse).setStatus(403);
                 }
             }catch(Exception e){
+                ((HttpServletResponse) servletResponse).setStatus(403);
                 e.printStackTrace();
             }
-            //filterChain.doFilter(servletRequest, servletResponse);
        }
+
     }
 
     @Override

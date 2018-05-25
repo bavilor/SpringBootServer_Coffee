@@ -1,5 +1,6 @@
 package by.bavilor.coffee.service;
 
+import by.bavilor.coffee.component.JWK;
 import by.bavilor.coffee.controller.CryptoController;
 import by.bavilor.coffee.crypto.KeyGen;
 import by.bavilor.coffee.entity.User;
@@ -10,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.util.List;
 
 /**
@@ -36,11 +39,14 @@ public class RequestService {
     }
 
     //Set user public key
-    public void addUser(String jsonPublickey, String sessionID){
+        public void addUser(String jsonPublicKey, String sessionID) throws Exception{
         try{
-            userService.addUser(cryptoController.restoreUserPublicKey(jsonPublickey), sessionID);
+            JWK jwk = new Gson().fromJson(jsonPublicKey, JWK.class);
+            System.out.println("Web client");
+            userService.addUser(jwk.restorePublicKey(), sessionID);
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Desktop client");
+            userService.addUser(cryptoController.restoreUserPublicKey(jsonPublicKey), sessionID);
         }
     }
 
@@ -65,10 +71,16 @@ public class RequestService {
         PublicKey publicKey = userService.getPublicKeyBySession(sessionID);
         SecretKey secretKey = keyGen.generateSecretKey();
 
+        SecureRandom randomSecureRandom = SecureRandom.getInstance("SHA1PRNG");
+        byte[] iv = new byte[16];
+        randomSecureRandom.nextBytes(iv);
+
         byte[] byteKey = cryptoController.encryptSecretKey(publicKey, secretKey);
-        byte[] data = cryptoController.ecnryptList(productService.getJsonProductList(), secretKey);
+        byte[] byteIV = cryptoController.encryptIV(publicKey, iv);
+        byte[] data = cryptoController.ecnryptList(productService.getJsonProductList(), secretKey, iv);
 
         outputStream.write(byteKey);
+        outputStream.write(byteIV);
         outputStream.write(data);
 
         return outputStream.toByteArray();
@@ -78,10 +90,11 @@ public class RequestService {
     public void registerOrder(String session, byte[] byte64Data) throws Exception{
         byte[] byteData = Base64.decode(byte64Data);
         byte[] byteSecretKey = getByteArray(0, 256, byteData);
-        byte[] byteOrder = getByteArray(256, byteData.length, byteData);
+        byte[] byteIV = cryptoController.decryptIV(getByteArray(256, 512, byteData));
+        byte[] byteOrder = getByteArray(512, byteData.length, byteData);
 
         SecretKey secretKey = cryptoController.decryptSecretKey(byteSecretKey);
-        userService.registerOrder(cryptoController.decryptOrder(byteOrder, secretKey), session);
+        userService.registerOrder(cryptoController.decryptOrder(byteOrder, secretKey, byteIV), session);
     }
 
     //Send order
@@ -90,26 +103,33 @@ public class RequestService {
         PublicKey publicKey = userService.getPublicKeyBySession(session);
         SecretKey secretKey = keyGen.generateSecretKey();
 
+        SecureRandom randomSecureRandom = SecureRandom.getInstance("SHA1PRNG");
+        byte[] iv = new byte[16];
+        randomSecureRandom.nextBytes(iv);
+
         byte[] byteKey = cryptoController.encryptSecretKey(publicKey, secretKey);
-        byte[] data = cryptoController.ecnryptList(userService.orderToJson(session), secretKey);
+        byte[] byteIV = cryptoController.encryptIV(publicKey, iv);
+        byte[] data = cryptoController.ecnryptList(userService.orderToJson(session), secretKey, iv);
 
         outputStream.write(byteKey);
+        outputStream.write(byteIV);
         outputStream.write(data);
 
         return outputStream.toByteArray();
     }
 
-    //Update order
+    //Update order ВЫ
     public void updateOrder(String session, byte[] byte64Data) throws Exception{
         byte[] byteData = Base64.decode(byte64Data);
         byte[] sign = getByteArray(byteData.length - 256, byteData.length, byteData);
 
         if(cryptoController.checkSign(sign, session, userService.getPublicKeyBySession(session))){
             byte[] byteSecretKey = getByteArray(0, 256, byteData);
+            byte[] byteIV = cryptoController.decryptIV(getByteArray(256, 512, byteData));
             byte[] byteUpdateOrder = getByteArray(256, byteData.length - 256, byteData);
 
             SecretKey secretKey = cryptoController.decryptSecretKey(byteSecretKey);
-            userService.updateOrder(cryptoController.decryptOrder(byteUpdateOrder, secretKey), session);
+            userService.updateOrder(cryptoController.decryptOrder(byteUpdateOrder, secretKey, byteIV), session);
             System.out.println("OK");
         }else{
             System.out.println("Sign error");

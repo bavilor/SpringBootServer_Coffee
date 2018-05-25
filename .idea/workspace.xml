@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9335e82-a504-4542-b64f-7c57aae2e45a" name="Default" comment="" />
+    <list default="true" id="b9335e82-a504-4542-b64f-7c57aae2e45a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/JWK.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/CheckSession1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/service/RequestService.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/CryptoController.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/CryptoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/RequestController.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/RequestController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/crypto/Encrypt.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/crypto/Encrypt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/WithSession3.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/WithSession3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/WithoutSession2.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/WithoutSession2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckSession1.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckSession1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession2.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -10,6 +28,11 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/CoffeServer$Application.coverage" NAME="Application Coverage Results" MODIFIED="1527170929677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>by.bavilor.coffee.*</FILTER>
+    </SUITE>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -29,15 +52,14 @@
       <file leaf-file-name="RequestController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="401">
+              <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#getPublicKey#0;class#RequestController#0" expanded="false" />
                 <element signature="method#setUserPublicKey#0;class#RequestController#0" expanded="false" />
                 <element signature="method#getPriceList#0;class#RequestController#0" expanded="false" />
-                <element signature="method#setOrder#0;class#RequestController#0" expanded="false" />
                 <element signature="method#getOrder#0;class#RequestController#0" expanded="false" />
-                <element signature="method#updateOrder#0;class#RequestController#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -46,42 +68,39 @@
       <file leaf-file-name="RequestService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="457">
+              <caret line="120" column="21" lean-forward="false" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#getServerPublicKey#0;class#RequestService#0" expanded="false" />
                 <element signature="method#addUser#0;class#RequestService#0" expanded="false" />
                 <element signature="method#getEncrSessionID#0;class#RequestService#0" expanded="false" />
                 <element signature="method#getPublicKeyByUserSession#0;class#RequestService#0" expanded="false" />
-                <element signature="method#getPriceList#0;class#RequestService#0" expanded="false" />
-                <element signature="method#registerOrder#0;class#RequestService#0" expanded="false" />
                 <element signature="method#sendOrder#0;class#RequestService#0" expanded="false" />
                 <element signature="method#updateOrder#0;class#RequestService#0" expanded="false" />
-                <element signature="method#getByteArray#0;class#RequestService#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Schedule.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/Schedule.java">
+      <file leaf-file-name="Order.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+            <state relative-caret-position="168">
+              <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WithSession3.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java">
+      <file leaf-file-name="Encrypt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="38" column="127" lean-forward="false" selection-start-line="38" selection-start-column="127" selection-end-line="38" selection-end-column="127" />
+            <state relative-caret-position="577">
+              <caret line="63" column="5" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="63" selection-end-column="5" />
               <folding>
-                <element signature="method#init#0;class#WithSession3#0" expanded="false" />
-                <element signature="method#destroy#0;class#WithSession3#0" expanded="false" />
+                <element signature="method#encryptList#0;class#Encrypt#0" expanded="false" />
+                <element signature="method#encryptSessionID#0;class#Encrypt#0" expanded="false" />
+                <element signature="method#encryptSecretKey#0;class#Encrypt#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -90,37 +109,40 @@
       <file leaf-file-name="CryptoController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding>
                 <element signature="method#encryptSessionID#0;class#CryptoController#0" expanded="false" />
                 <element signature="method#restoreUserPublicKey#0;class#CryptoController#0" expanded="false" />
                 <element signature="method#decryptSessionID#0;class#CryptoController#0" expanded="false" />
                 <element signature="method#ecnryptList#0;class#CryptoController#0" expanded="false" />
                 <element signature="method#encryptSecretKey#0;class#CryptoController#0" expanded="false" />
-                <element signature="method#decryptSecretKey#0;class#CryptoController#0" expanded="false" />
-                <element signature="method#decryptOrder#0;class#CryptoController#0" expanded="false" />
+                <element signature="method#checkSign#0;class#CryptoController#0" expanded="false" />
+                <element signature="method#encryptIV#0;class#CryptoController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java">
+      <file leaf-file-name="WithSession3.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="58" column="42" lean-forward="false" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="42" />
+            <state relative-caret-position="392">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Decrypt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="48" column="106" lean-forward="false" selection-start-line="48" selection-start-column="106" selection-end-line="48" selection-end-column="106" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#addUser#0;class#UserService#0" expanded="false" />
-                <element signature="method#getUserBySession#0;class#UserService#0" expanded="false" />
-                <element signature="method#publicKeyToString#0;class#UserService#0" expanded="false" />
-                <element signature="method#stringToPublicKey#0;class#UserService#0" expanded="false" />
-                <element signature="method#checkUser#0;class#UserService#0" expanded="false" />
-                <element signature="method#registerOrder#0;class#UserService#0" expanded="false" />
-                <element signature="method#getOrder#0;class#UserService#0" expanded="false" />
-                <element signature="method#orderToJson#0;class#UserService#0" expanded="false" />
-                <element signature="method#updateOrder#0;class#UserService#0" expanded="false" />
+                <element signature="method#decryptUserSession#0;class#Decrypt#0" expanded="false" />
+                <element signature="method#decryptSecretKey#0;class#Decrypt#0" expanded="false" />
+                <element signature="method#decryptOrder#0;class#Decrypt#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -132,8 +154,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
     </option>
   </component>
   <component name="GradleLocalSettings">
@@ -144,9 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/InterceptorController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/InterceptorService.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/Interceptor/interceptor2.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/Interceptor/Interceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/SpringConfiguration.java" />
@@ -173,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession_2d.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/wrappers/RequestWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckSession1.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/http/HttpRequestCustom.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/http/HttpRequestCustomWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/Schedule.java" />
@@ -183,17 +211,21 @@
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/entity/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/repository/OrderRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/OrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession2.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RESTService.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/entity/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/ProductService.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/KeyGen.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/JWK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/JWK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession2.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckSession1.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java" />
       </list>
     </option>
@@ -225,9 +257,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,6 +284,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -311,36 +344,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coffee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -434,58 +437,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CoffeeServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coffee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IdeaProjects/fileReadWrite" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="by.bavilor.coffee.controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\Java\CoffeeServer\src\main\resources\static" />
       <recent name="D:\work\Java\CoffeeServer\src\main\java\by\bavilor\coffee\service" />
       <recent name="D:\work\Java\CoffeeServer\src\main\java\by\bavilor\coffee\repository" />
       <recent name="D:\work\Java\CoffeeServer\src\main\java\by\bavilor\coffee\entity" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="by.bavilor.coffee.controller" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -964,11 +942,20 @@
       <workItem from="1526023658572" duration="21024000" />
       <workItem from="1526283815648" duration="2619000" />
       <workItem from="1526286692631" duration="24663000" />
+      <workItem from="1526393757768" duration="2742000" />
+      <workItem from="1526460373463" duration="12094000" />
+      <workItem from="1526547946278" duration="10199000" />
+      <workItem from="1526634508523" duration="14124000" />
+      <workItem from="1526887247996" duration="3433000" />
+      <workItem from="1526892807239" duration="16599000" />
+      <workItem from="1526973669181" duration="22259000" />
+      <workItem from="1527060434860" duration="6483000" />
+      <workItem from="1527151311649" duration="12491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="307976000" />
+    <option name="totallyTimeSpent" value="408400000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -980,12 +967,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.50625" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32799146" sideWeight="0.50625" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -994,19 +980,19 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39893618" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31730768" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32799146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32553193" sideWeight="0.49375" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2767094" sideWeight="0.49375" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.246875" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.209375" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1014,6 +1000,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287234" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1022,12 +1009,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="120" />
+      <option name="time" value="171" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1036,70 +1026,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/InterceptorController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/InterceptorService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/Interceptor/interceptor2.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/SpringConfiguration.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/Interceptor/Interceptor.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1176">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="32" lean-forward="false" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/FindNewUserFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/DecodeheaderFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/SpringConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckParamFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/wrappers/RequestWrapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Keys.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/http/HttpRequestCustomWrapper.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="87" lean-forward="false" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="87" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="59" column="21" lean-forward="false" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/entity/Orders.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/repository/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/java/jdk1.8.0_31/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/5.2.16.Final/hibernate-core-5.2.16.Final.jar!/org/hibernate/collection/internal/AbstractPersistentCollection.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
@@ -1114,13 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/Gson.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="385" column="0" lean-forward="false" selection-start-line="385" selection-start-column="0" selection-end-line="385" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/Excluder.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1132,20 +1051,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/bind/TypeAdapters.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/TypeAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1191,24 +1096,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/entity/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/repository/OrderRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="58" lean-forward="false" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckSession1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="26" column="79" lean-forward="true" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
         </state>
       </provider>
     </entry>
@@ -1224,6 +1115,8 @@
             <element signature="method#encryptSecretKey#0;class#CryptoController#0" expanded="false" />
             <element signature="method#decryptSecretKey#0;class#CryptoController#0" expanded="false" />
             <element signature="method#decryptOrder#0;class#CryptoController#0" expanded="false" />
+            <element signature="method#checkSign#0;class#CryptoController#0" expanded="false" />
+            <element signature="method#encryptIV#0;class#CryptoController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1242,13 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="37" column="58" lean-forward="false" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -1256,51 +1142,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/ProductService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/dsf" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html" />
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/ConstructorConstructor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#addProduct#0;class#ProductService#0" expanded="false" />
-            <element signature="method#deleteProduct#0;class#ProductService#0" expanded="false" />
-            <element signature="method#printProducts#0;class#ProductService#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="231">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/TypeAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="124">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/KeyGen.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/bind/TypeAdapters.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="118">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/bind/CollectionTypeAdapterFactory.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="50" column="81" lean-forward="false" selection-start-line="50" selection-start-column="81" selection-end-line="50" selection-end-column="81" />
-          <folding />
+        <state relative-caret-position="186">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/bind/MapTypeAdapterFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/bind/JsonAdapterAnnotationTypeAdapterFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/internal/bind/ReflectiveTypeAdapterFactory.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar!/com/google/gson/Gson.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.0.5.RELEASE/spring-aop-5.0.5.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="58" column="42" lean-forward="false" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="42" />
+        <state relative-caret-position="777">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#addUser#0;class#UserService#0" expanded="false" />
-            <element signature="method#getUserBySession#0;class#UserService#0" expanded="false" />
+            <element signature="e#1167#1168#0" expanded="false" />
+            <element signature="e#1214#1215#0" expanded="false" />
             <element signature="method#publicKeyToString#0;class#UserService#0" expanded="false" />
             <element signature="method#stringToPublicKey#0;class#UserService#0" expanded="false" />
             <element signature="method#checkUser#0;class#UserService#0" expanded="false" />
@@ -1312,79 +1227,210 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java">
+    <entry file="jar://D:/java/jdk1.8.0_31/src.zip!/java/nio/charset/Charset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="38" column="127" lean-forward="false" selection-start-line="38" selection-start-column="127" selection-end-line="38" selection-end-column="127" />
+        <state relative-caret-position="134">
+          <caret line="653" column="0" lean-forward="false" selection-start-line="653" selection-start-column="0" selection-end-line="653" selection-end-column="0" />
           <folding>
-            <element signature="method#init#0;class#WithSession3#0" expanded="false" />
-            <element signature="method#destroy#0;class#WithSession3#0" expanded="false" />
+            <element signature="e#26105#26106#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/java/jdk1.8.0_31/src.zip!/java/lang/StringCoding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="386" column="0" lean-forward="false" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="570" column="0" lean-forward="false" selection-start-line="570" selection-start-column="0" selection-end-line="570" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/FrameworkServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="502" column="0" lean-forward="false" selection-start-line="502" selection-start-column="0" selection-end-line="502" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.5.29/tomcat-embed-core-8.5.29.jar!/org/apache/catalina/core/ApplicationFilterChain.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/5.0.5.RELEASE/spring-webmvc-5.0.5.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="425" column="0" lean-forward="false" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar://D:/java/jdk1.8.0_31/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
+        <state relative-caret-position="169">
           <caret line="744" column="0" lean-forward="false" selection-start-line="744" selection-start-column="0" selection-end-line="744" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/java/jdk1.8.0_31/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="645" column="0" lean-forward="false" selection-start-line="645" selection-start-column="0" selection-end-line="645" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/JWK.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/Schedule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        <state relative-caret-position="336">
+          <caret line="19" column="35" lean-forward="false" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/JWK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/KeyGen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithoutSession2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="31" column="58" lean-forward="false" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/vue.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/CheckSession1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="33" column="79" lean-forward="false" selection-start-line="33" selection-start-column="79" selection-end-line="33" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#init#0;class#CheckSession1#0" expanded="false" />
+            <element signature="method#destroy#0;class#CheckSession1#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/ProductService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="62" column="26" lean-forward="false" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+          <folding>
+            <element signature="method#addProduct#0;class#ProductService#0" expanded="false" />
+            <element signature="method#deleteProduct#0;class#ProductService#0" expanded="false" />
+            <element signature="method#printProducts#0;class#ProductService#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/WithSession3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="78" column="5" lean-forward="true" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getPublicKey#0;class#RequestController#0" expanded="false" />
+            <element signature="method#setUserPublicKey#0;class#RequestController#0" expanded="false" />
+            <element signature="method#getPriceList#0;class#RequestController#0" expanded="false" />
+            <element signature="method#getOrder#0;class#RequestController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/entity/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Decrypt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="48" column="106" lean-forward="false" selection-start-line="48" selection-start-column="106" selection-end-line="48" selection-end-column="106" />
+          <folding>
+            <element signature="method#decryptUserSession#0;class#Decrypt#0" expanded="false" />
+            <element signature="method#decryptSecretKey#0;class#Decrypt#0" expanded="false" />
+            <element signature="method#decryptOrder#0;class#Decrypt#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state relative-caret-position="200">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
             <element signature="method#encryptSessionID#0;class#CryptoController#0" expanded="false" />
             <element signature="method#restoreUserPublicKey#0;class#CryptoController#0" expanded="false" />
             <element signature="method#decryptSessionID#0;class#CryptoController#0" expanded="false" />
             <element signature="method#ecnryptList#0;class#CryptoController#0" expanded="false" />
             <element signature="method#encryptSecretKey#0;class#CryptoController#0" expanded="false" />
-            <element signature="method#decryptSecretKey#0;class#CryptoController#0" expanded="false" />
-            <element signature="method#decryptOrder#0;class#CryptoController#0" expanded="false" />
+            <element signature="method#checkSign#0;class#CryptoController#0" expanded="false" />
+            <element signature="method#encryptIV#0;class#CryptoController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/crypto/Encrypt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="577">
+          <caret line="63" column="5" lean-forward="true" selection-start-line="57" selection-start-column="4" selection-end-line="63" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setUserPublicKey#0;class#RequestController#0" expanded="false" />
-            <element signature="method#getPriceList#0;class#RequestController#0" expanded="false" />
-            <element signature="method#setOrder#0;class#RequestController#0" expanded="false" />
-            <element signature="method#getOrder#0;class#RequestController#0" expanded="false" />
-            <element signature="method#updateOrder#0;class#RequestController#0" expanded="false" />
+            <element signature="method#encryptList#0;class#Encrypt#0" expanded="false" />
+            <element signature="method#encryptSessionID#0;class#Encrypt#0" expanded="false" />
+            <element signature="method#encryptSecretKey#0;class#Encrypt#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state relative-caret-position="457">
+          <caret line="120" column="21" lean-forward="false" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getServerPublicKey#0;class#RequestService#0" expanded="false" />
             <element signature="method#addUser#0;class#RequestService#0" expanded="false" />
             <element signature="method#getEncrSessionID#0;class#RequestService#0" expanded="false" />
             <element signature="method#getPublicKeyByUserSession#0;class#RequestService#0" expanded="false" />
-            <element signature="method#getPriceList#0;class#RequestService#0" expanded="false" />
-            <element signature="method#registerOrder#0;class#RequestService#0" expanded="false" />
             <element signature="method#sendOrder#0;class#RequestService#0" expanded="false" />
             <element signature="method#updateOrder#0;class#RequestService#0" expanded="false" />
-            <element signature="method#getByteArray#0;class#RequestService#0" expanded="false" />
           </folding>
         </state>
       </provider>

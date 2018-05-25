@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.util.List;
 
 /**
@@ -39,10 +41,9 @@ public class Encrypt {
     }
 
     //Encrypt list of products by use AES
-    public byte[] encryptListOfProducts(String json, SecretKey secretKey) throws Exception{
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS7Padding", "BC");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-
+    public byte[] encryptListOfProducts(String json, SecretKey secretKey, byte[] iv) throws Exception{
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
         return cipher.doFinal(json.getBytes());
     }
 
@@ -54,4 +55,11 @@ public class Encrypt {
         return cipher.wrap(secretKey);
     }
 
+    //Encrypt iv
+    public byte[] encryptIV(PublicKey publicKey, byte[] iv) throws Exception{
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+        return cipher.doFinal(iv);
+    }
 }

@@ -1,6 +1,5 @@
 package by.bavilor.coffee.filter;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -23,16 +22,25 @@ public class CheckSession1 implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletResponse response =  ((HttpServletResponse) servletResponse);
+        HttpServletRequest request =  ((HttpServletRequest) servletRequest);
 
-        if(((HttpServletRequest) servletRequest).getHeader("session") == null){
-            servletRequest.setAttribute("skip", false);
-            ((HttpServletResponse) servletResponse).setHeader("session", ((HttpServletRequest) servletRequest).getSession().getId());
-            filterChain.doFilter(servletRequest,servletResponse);
+        ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Origin", "*");
+        ((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Headers", "*");
+
+        if(request.getMethod().equals("OPTIONS")){
+            response.setStatus(200);
         }else{
-            servletRequest.setAttribute("skip", true);
-            filterChain.doFilter(servletRequest,servletResponse);
+            System.out.println("Try to connecting. " + request.getMethod() + " to " + request.getRequestURL());
+            if(request.getHeader("session") == null || request.getHeader("session").equals("")){
+                servletRequest.setAttribute("skip", false);
+                ((HttpServletResponse) servletResponse).setHeader("session", ((HttpServletRequest) servletRequest).getSession().getId());
+                filterChain.doFilter(servletRequest,servletResponse);
+            }else{
+                servletRequest.setAttribute("skip", true);
+                filterChain.doFilter(servletRequest,servletResponse);
+            }
         }
-
     }
 
     @Override

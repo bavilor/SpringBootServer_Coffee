@@ -1,5 +1,6 @@
 package by.bavilor.coffee.controller;
 
+import by.bavilor.coffee.component.JWK;
 import by.bavilor.coffee.crypto.KeyGen;
 import by.bavilor.coffee.entity.Order;
 import by.bavilor.coffee.service.ProductService;
@@ -11,15 +12,24 @@ import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.math.BigInteger;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.RSAPublicKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
  * Created by bosak on 4/19/2018.
  */
+@CrossOrigin
 @RestController
 public class RequestController {
 
@@ -28,7 +38,7 @@ public class RequestController {
 
     //Response server public key
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public @ResponseBody byte[] getPublicKey(){
+    public @ResponseBody byte[] getPublicKey(HttpServletResponse response){
         return requestService.getServerPublicKey();
     }
 
