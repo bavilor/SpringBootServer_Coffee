@@ -31,33 +31,20 @@ public class UserService {
 
     public UserService(){}
 
-    //Add new user
-    public void addUser(PublicKey publicKey, String sessionID){
-        try{
-            userRepository.save(new User(sessionID, publicKeyToString(publicKey)));
-        }catch (Exception e){
-            e.printStackTrace();
+    public int createUser(PublicKey publicKey){
+        User u = new User(publicKeyToString(publicKey));
+        userRepository.save(u);
+        return u.getId();
+    }
+
+    //Register new order
+    public void registerOrder(List<Order> orderList, int userID){
+        User user = getUserByID(userID);
+        for(Order order : orderList){
+            order.setUser(user);
+            user.getOrders().add(order);
         }
-    }
-
-    //Get list of users
-    public List<User> getListOfUsers(){
-        return userRepository.findAll();
-    }
-
-    //Find user by session
-    public User getUserBySession(String session){
-        for(User user : getListOfUsers()){
-            if(user.getSessionID().equals(session)){
-                return user;
-            }
-        }
-        return null;
-    }
-
-    //Return user public key by session
-    public PublicKey getPublicKeyBySession(String session) throws Exception{
-        return stringToPublicKey(getUserBySession(session).getPublicRSAKey());
+        userRepository.save(user);
     }
 
     //Convert a key to string for database
@@ -79,33 +66,37 @@ public class UserService {
         return keyFactory.generatePublic(x509EncodedKeySpec);
     }
 
-    //Check user
-    public boolean checkUser(String sessionID) throws Exception{
-        for(User u: getListOfUsers()){
-            if(u.getSessionID().equals(sessionID)){
-                return true;
+    //Return user
+    private User getUserByID(int userID){
+        List<User> users = userRepository.findAll();
+        for(User u : users){
+            if(u.getId() == userID){
+                return u;
             }
         }
-        return false;
+        return null;
     }
 
-    //Register new order
-    public void registerOrder(List<Order> orderList, String session){
-        User user = getUserBySession(session);
-        if (user == null){
-            System.out.println("Can't find a user");
-        }else{
-            for(Order order : orderList){
-                order.setUser(user);
-                user.getOrders().add(order);
-            }
-            userRepository.save(user);
-        }
+    //Return users
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
     }
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
 
     //Send order
     public List<Order> getOrder(String session) throws Exception{
-        User user = getUserBySession(session);
         if(user == null) {
             System.out.println("Can't find the user");
             return null;
@@ -153,4 +144,16 @@ public class UserService {
             }
         }
     }
+
+    //Check client app
+    public boolean checkClientApp(String session, String typeApp) {
+        for(User u: getListOfUsers()){
+            if(u.getSessionID().equals(session)){
+                if(u.getClient().equals(typeApp)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }*/
 }

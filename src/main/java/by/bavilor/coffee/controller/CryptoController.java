@@ -1,24 +1,17 @@
 package by.bavilor.coffee.controller;
 
-import by.bavilor.coffee.component.JWK;
 import by.bavilor.coffee.crypto.Decrypt;
 import by.bavilor.coffee.crypto.Encrypt;
 import by.bavilor.coffee.crypto.KeyGen;
 import by.bavilor.coffee.entity.Order;
 import by.bavilor.coffee.service.RequestService;
-import com.fasterxml.jackson.databind.ser.Serializers;
-import com.google.gson.Gson;
-import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
-import java.math.BigInteger;
 import java.security.KeyFactory;
+import java.security.KeyPair;
 import java.security.PublicKey;
-import java.security.Signature;
-import java.security.spec.RSAPublicKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.List;
 
@@ -37,23 +30,69 @@ public class CryptoController {
     @Autowired
     private Encrypt encrypt;
 
-    //Encrypt session ID
-    public byte[] encryptSessionID(String session) throws Exception{
-        return encrypt.encryptSessionID(session, requestService.getPublicKeyByUserSession(session));
+    //Restore public key
+    public PublicKey restorePublicKey(byte[] pkBytes) throws Exception{
+        KeyFactory keyFactory  = KeyFactory.getInstance("RSA", "BC");
+        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(pkBytes);
+        return keyFactory.generatePublic(keySpecX509);
     }
 
-    //Get encoded server public key
-    public byte[] getEncodedServerPublicKey(){
-        return Base64.encode(keyGen.getPublicKey().getEncoded());
+    //Return secret key
+    public SecretKey getSecretKey() throws Exception{
+        return keyGen.generateSecretKey();
     }
+
+    //Return iv
+    public byte[] getIV() throws Exception{
+        return keyGen.generateIV();
+    }
+
+    //Encrypt string
+    public byte[] encryptData(byte[] data, SecretKey secretKey, byte[] iv) throws Exception{
+        return encrypt.encryptData(data, secretKey, iv);
+    }
+
+    //Wrap AES key by RSA
+    public byte[] encryptSecretKey(PublicKey publicKey, SecretKey secretKey) throws Exception{
+        return encrypt.encryptSecretKey(publicKey, secretKey);
+    }
+
+    //Encrypt IV by public key
+    public byte[] encryptIV(PublicKey publicKey, byte[] iv) throws Exception{
+        return encrypt.encryptIV(publicKey, iv);
+    }
+
+    //Get byte server public key
+    public byte[] getServerPublicKey(){
+        return keyGen.getPublicKey().getEncoded();
+    }
+
+    //Decrypt IV
+    public byte[] decryptIV(byte[] iv) throws Exception{
+        return decrypt.decryptIV(iv);
+    }
+
+    public SecretKey restoreSecretKey(byte[] secretKeyBytes) throws Exception{
+        return decrypt.restoreSecretKey(secretKeyBytes);
+    }
+
+    //Decrypt order list
+    public byte[] decryptOrder(byte[] byteOrder, SecretKey secretKey, byte[] byteIV) throws Exception{
+        return decrypt.decryptOrder(byteOrder, secretKey, byteIV);
+    }
+
+
+
+
+
+   /*
+
 
     //Restore user public key
-    public PublicKey restoreUserPublicKey(String jsonPublickey) throws Exception{
-        byte[] bytePublicUserKey = new Gson().fromJson(jsonPublickey, byte[].class);
+    public PublicKey restoreUserPublicKey(String b64UPK) throws Exception{
+        byte[] bKey = Base64.decode(b64UPK);
 
-        KeyFactory keyFactory  = KeyFactory.getInstance("RSA", "BC");
-        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(Base64.decode(bytePublicUserKey));
-        return keyFactory.generatePublic(keySpecX509);
+
     }
 
     //Decrypt session ID by private server key
@@ -68,41 +107,49 @@ public class CryptoController {
         return decrypt.decryptUserSession(bytes);
     }
 
-    //Encrypt list by use AES key
-    public byte[] ecnryptList(String json, SecretKey secretKey, byte[] iv) throws Exception{
-        return encrypt.encryptListOfProducts(json, secretKey, iv);
-    }
 
-    //Wrap AES key by RSA
-    public byte[] encryptSecretKey(PublicKey publicKey, SecretKey secretKey) throws Exception{
-        return encrypt.encryptSecretKey(publicKey, secretKey);
-    }
+
+
 
     //Decrypt aes key
-    public SecretKey decryptSecretKey(byte[] byteSecretkey) throws Exception{
-       return decrypt.decryptSecretKey(byteSecretkey);
+    public SecretKey restoreSecretKey(byte[] byteSecretkey) throws Exception{
+       return decrypt.restoreSecretKey(byteSecretkey);
     }
 
-    //Decrypt order list
-    public List<Order> decryptOrder(byte[] byteOrder, SecretKey secretKey, byte[] byteIV) throws Exception{
-        return decrypt.decryptOrder(byteOrder, secretKey, byteIV);
-    }
+
 
     //Check sign for update methods
-    public boolean checkSign(byte[] sign, String session, PublicKey publicKey) throws Exception   {
-        Signature signature = Signature.getInstance("SHA1withRSA");
-        signature.initVerify(publicKey);
-        signature.update(session.getBytes());
-        return signature.verify(sign);
+    public boolean checkSign(byte[] sign, String session, PublicKey publicKey, String client) throws Exception   {
+
+        if(client.equals("web")){
+            Signature signature = Signature.getInstance("SHA256withRSA/PSS", "BC");
+            PSSParameterSpec pssSpec = new PSSParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-256"), 128, 1);
+
+            signature.setParameter(pssSpec);
+            signature.initVerify(publicKey);
+            signature.update(session.getBytes());
+
+            return signature.verify(sign);
+        }else{
+            Signature signature = Signature.getInstance("SHA256withRSA");
+
+            signature.initVerify(publicKey);
+            signature.update(session.getBytes());
+
+            return signature.verify(sign);
+        }
+
     }
 
-    //Encrypt IV by public key
-    public byte[] encryptIV(PublicKey publicKey, byte[] iv) throws Exception{
-        return encrypt.encryptIV(publicKey, iv);
-    }
+
 
     //Decrypt IV
-    public byte[] decryptIV(byte[] iv) throws Exception{
-        return decrypt.decryptIV(iv);
-    }
+
+
+    //Restore public PSS key
+    public PublicKey restorePssKey(byte[] byteKey) throws Exception{
+        KeyFactory keyFactory  = KeyFactory.getInstance("RSA", "BC");
+        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(byteKey);
+        return keyFactory.generatePublic(keySpecX509);
+    }*/
 }

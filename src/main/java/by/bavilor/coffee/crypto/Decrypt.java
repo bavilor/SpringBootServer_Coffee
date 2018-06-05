@@ -23,22 +23,11 @@ public class Decrypt {
     @Autowired
     private KeyGen keyGen;
 
+
     public Decrypt(){}
 
-    //decrypt user session
-    public String decryptUserSession(byte[] bytes) throws Exception{
-        String session = "";
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
-        cipher.init(Cipher.DECRYPT_MODE, keyGen.getPrivateKey());
-        byte[] byteSessionID = cipher.doFinal(bytes);
-        for(byte b : byteSessionID){
-            session += (char) b;
-        }
-        return session;
-    }
-
     //Decrypt and restore a secret key
-    public SecretKey decryptSecretKey(byte[] secretKey) throws Exception{
+    public SecretKey restoreSecretKey(byte[] secretKey) throws Exception{
         Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
         cipher.init(Cipher.UNWRAP_MODE, keyGen.getPrivateKey());
 
@@ -46,19 +35,19 @@ public class Decrypt {
     }
 
     //Decrypt order list
-    public List<Order> decryptOrder(byte[] byteOrder, SecretKey secretKey, byte[] byteIV) throws Exception{
+    public byte[] decryptOrder(byte[] byteOrder, SecretKey secretKey, byte[] byteIV) throws Exception{
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
         cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(byteIV));
 
-        byte[] decrBytes = cipher.doFinal(byteOrder);
+        return cipher.doFinal(byteOrder);
 
-        String s = "";
+        /*String s = "";
         for(byte b : decrBytes){
             s += (char) b;
         }
 
         Order[] orders = new Gson().fromJson(s, Order[].class);
-        return Arrays.asList(orders);
+        return Arrays.asList(orders);*/
     }
 
     //Decrypt iv

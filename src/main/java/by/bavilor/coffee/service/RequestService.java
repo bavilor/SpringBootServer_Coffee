@@ -1,20 +1,17 @@
 package by.bavilor.coffee.service;
 
-import by.bavilor.coffee.component.JWK;
 import by.bavilor.coffee.controller.CryptoController;
 import by.bavilor.coffee.crypto.KeyGen;
+import by.bavilor.coffee.entity.Order;
 import by.bavilor.coffee.entity.User;
 import com.google.gson.Gson;
-import org.bouncycastle.util.encoders.Base64;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.SecretKey;
-import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
-import java.security.PublicKey;
-import java.security.SecureRandom;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,21 +29,63 @@ public class RequestService {
     @Autowired
     private KeyGen keyGen;
 
-    //Return server public key
-    public byte[] getServerPublicKey(){
-        System.out.println("Key was send");
-        return cryptoController.getEncodedServerPublicKey();
+    //Get json product list
+    public byte[] getProductList(){
+        return (new Gson().toJson(productService.getListOfProducts())).getBytes();
     }
 
+    //Return server public key
+    public byte[] getServerPublicKey(){
+        return cryptoController.getServerPublicKey();
+    }
+
+    //Register new order
+    public void registerOrder(String orderBytes, int userID) throws Exception{
+        List<Order> order = Arrays.asList(new Gson().fromJson(orderBytes, Order[].class));
+        userService.registerOrder(order, userID);
+    }
+
+    //Return orders list bytes
+    public byte[] getOrderListBytes() throws Exception{
+        List<User> users = userService.getAllUsers();
+        List<Order> list;
+        Gson g = new Gson();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        for(User u : users){
+            list = new ArrayList<Order>();
+            for(Order o : u.getOrders()){
+                list.add(new Order(o.getName(), o.getPrice(), o.getAmount()));
+            }
+            baos.write(g.toJson(list).getBytes());
+        }
+        byte[] orders = baos.toByteArray();
+        baos.close();
+        return orders;
+    }
+
+
+
+
+
+
+
+/*    public byte[] getByteOrderList(InputStream inputStream) throws Exception{
+        byte[] b64Data = getByteDataFromRequest(inputStream);
+
+    }*/
+
+    /*
+
     //Set user public key
-        public void addUser(String jsonPublicKey, String sessionID) throws Exception{
+    public void addUser(String jsonPublicKey, String sessionID) throws Exception{
         try{
             JWK jwk = new Gson().fromJson(jsonPublicKey, JWK.class);
             System.out.println("Web client");
-            userService.addUser(jwk.restorePublicKey(), sessionID);
+            userService.addUser(jwk.restorePublicKey(), sessionID, "web");
         }catch (Exception e){
             System.out.println("Desktop client");
-            userService.addUser(cryptoController.restoreUserPublicKey(jsonPublicKey), sessionID);
+            userService.addUser(cryptoController.restoreUserPublicKey(jsonPublicKey), sessionID, "desktop");
         }
     }
 
@@ -65,10 +104,10 @@ public class RequestService {
         return userService.getPublicKeyBySession(session);
     }
 
-    //Return price list & secret key in one array (unite with sendOrder??)
-    public byte[] getPriceList(String sessionID) throws Exception{
+    //Return price list & secret key in one array
+    public byte[] getPriceList(String b64UPK) throws Exception{
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PublicKey publicKey = userService.getPublicKeyBySession(sessionID);
+        PublicKey publicKey = cryptoController.restoreUserPublicKey(b64UPK);
         SecretKey secretKey = keyGen.generateSecretKey();
 
         SecureRandom randomSecureRandom = SecureRandom.getInstance("SHA1PRNG");
@@ -86,16 +125,7 @@ public class RequestService {
         return outputStream.toByteArray();
     }
 
-    //Register new order
-    public void registerOrder(String session, byte[] byte64Data) throws Exception{
-        byte[] byteData = Base64.decode(byte64Data);
-        byte[] byteSecretKey = getByteArray(0, 256, byteData);
-        byte[] byteIV = cryptoController.decryptIV(getByteArray(256, 512, byteData));
-        byte[] byteOrder = getByteArray(512, byteData.length, byteData);
 
-        SecretKey secretKey = cryptoController.decryptSecretKey(byteSecretKey);
-        userService.registerOrder(cryptoController.decryptOrder(byteOrder, secretKey, byteIV), session);
-    }
 
     //Send order
     public byte[] sendOrder(String session) throws Exception{
@@ -118,32 +148,36 @@ public class RequestService {
         return outputStream.toByteArray();
     }
 
-    //Update order ВЫ
-    public void updateOrder(String session, byte[] byte64Data) throws Exception{
+    //Update order
+    public void updateOrder(String session, byte[] byte64Data, HttpServletRequest request) throws Exception{
         byte[] byteData = Base64.decode(byte64Data);
         byte[] sign = getByteArray(byteData.length - 256, byteData.length, byteData);
+        PublicKey publicKey;
+        String client;
+        if(userService.checkClientApp(session, "desktop")){
+            System.out.println("Desktop");
+            publicKey = userService.getPublicKeyBySession(session);
+            client = "desktop";
+        }else{
+            System.out.println("Web");
+            String key = request.getHeader("rsaPssKey");
+            publicKey = cryptoController.restorePssKey(Base64.decode(key));
+            client = "web";
+        }
 
-        if(cryptoController.checkSign(sign, session, userService.getPublicKeyBySession(session))){
+        if(cryptoController.checkSign(sign, session, publicKey, client)){
             byte[] byteSecretKey = getByteArray(0, 256, byteData);
             byte[] byteIV = cryptoController.decryptIV(getByteArray(256, 512, byteData));
-            byte[] byteUpdateOrder = getByteArray(256, byteData.length - 256, byteData);
+            byte[] byteUpdateOrder = getByteArray(512, byteData.length - 256, byteData);
 
-            SecretKey secretKey = cryptoController.decryptSecretKey(byteSecretKey);
+            SecretKey secretKey = cryptoController.restoreSecretKey(byteSecretKey);
             userService.updateOrder(cryptoController.decryptOrder(byteUpdateOrder, secretKey, byteIV), session);
             System.out.println("OK");
         }else{
             System.out.println("Sign error");
         }
+
     }
 
-    //Use to separate response on key bytes and data bytes
-    private byte[] getByteArray(int start, int end, byte[] data){
-        int numOfIter = end - start;
-        byte[] bytes = new byte[numOfIter];
-
-        for(int i = 0; i < numOfIter; i++){
-            bytes[i] = data[i + start];
-        }
-        return bytes;
-    }
+*/
 }

@@ -55,13 +55,8 @@ public class ProductService {
         }
     }
 
-    //Return a List of products converted to json
-    public String getJsonProductList(){
-        return new Gson().toJson(getListOfProducts());
-    }
-
     //Get list of products
-    private List<Product> getListOfProducts(){
+    public List<Product> getListOfProducts(){
         return productListRepository.findAll();
     }
 }

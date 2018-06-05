@@ -22,6 +22,37 @@ public class Encrypt {
 
     public Encrypt() {}
 
+    //Encrypt list of products by use AES
+    public byte[] encryptData(byte[] data, SecretKey secretKey, byte[] iv) throws Exception{
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
+        return cipher.doFinal(data);
+    }
+
+    //Encrypt AES key
+    public byte[] encryptSecretKey(PublicKey publicKey, SecretKey secretKey) throws Exception{
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
+        cipher.init(Cipher.WRAP_MODE, publicKey);
+
+        return cipher.wrap(secretKey);
+    }
+
+    //Encrypt iv
+    public byte[] encryptIV(PublicKey publicKey, byte[] iv) throws Exception{
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+        return cipher.doFinal(iv);
+    }
+
+
+
+
+
+
+
+
+
     //Encrypt List<Product>
     public byte[] encryptList(String json) throws Exception{
         SecretKey secretKey = keyGen.generateSecretKey();
@@ -40,26 +71,9 @@ public class Encrypt {
         return cipher.doFinal(session.getBytes());
     }
 
-    //Encrypt list of products by use AES
-    public byte[] encryptListOfProducts(String json, SecretKey secretKey, byte[] iv) throws Exception{
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey, new IvParameterSpec(iv));
-        return cipher.doFinal(json.getBytes());
-    }
 
-    //Encrypt AES key
-    public byte[] encryptSecretKey(PublicKey publicKey, SecretKey secretKey) throws Exception{
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
-        cipher.init(Cipher.WRAP_MODE, publicKey);
 
-        return cipher.wrap(secretKey);
-    }
 
-    //Encrypt iv
-    public byte[] encryptIV(PublicKey publicKey, byte[] iv) throws Exception{
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
 
-        return cipher.doFinal(iv);
-    }
+
 }

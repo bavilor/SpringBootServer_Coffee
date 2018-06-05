@@ -10,6 +10,10 @@ import com.google.gson.Gson;
 import org.bouncycastle.util.encoders.Base64;
 import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.Cipher;
@@ -37,51 +41,40 @@ public class RequestController {
     private RequestService requestService;
 
     //Response server public key
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public @ResponseBody byte[] getPublicKey(HttpServletResponse response){
-        return requestService.getServerPublicKey();
-    }
-
-    //Request public key & Response user session
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public @ResponseBody String setUserPublicKey(HttpServletRequest request, HttpServletResponse response, @RequestBody String jsonPublicKey) throws Exception{
-        String session = request.getSession().getId();
-        requestService.addUser(jsonPublicKey, session);
-        try{
-            return requestService.getEncrSessionID(session);
-        }catch(Exception e){
-            System.out.println("Can't encrypt the session. RequestController/setUserPublicKey: ");
-            response.setStatus(403);
-            e.printStackTrace();
-            return null;
-        }
+    @RequestMapping(value = "/getServerPublicKey", method = RequestMethod.GET)
+    public void getPublicKey(HttpServletResponse response) throws Exception{
+        System.out.println("Key was send");
+        response.getOutputStream().write(requestService.getServerPublicKey());
     }
 
     //Response price list
     @RequestMapping(value = "/getProducts", method = RequestMethod.GET)
-    public @ResponseBody byte[]  getPriceList(HttpServletRequest request) throws Exception{
-        System.out.println("Dispatch products.. OK.");
-        return Base64.encode(requestService.getPriceList((String) request.getAttribute("decryptedSession")));
+    public void getPriceList(HttpServletResponse response) throws Exception{
+        System.out.println("Dispatch products");
+        response.getOutputStream().write(requestService.getProductList());
     }
 
     //Order from client
     @RequestMapping(value = "/setOrder", method = RequestMethod.POST)
-    public void setOrder(@RequestBody byte[] byte64Data, HttpServletRequest request) throws Exception{
+    public void setOrder(@RequestBody String orderBytes, HttpServletRequest request) throws Exception{
         System.out.println("Registration of a new order..");
-        requestService.registerOrder((String) request.getAttribute("decryptedSession"), byte64Data);
+        int userID = (int) request.getAttribute("userID");
+        requestService.registerOrder(orderBytes, userID);
     }
 
     //Order to client
     @RequestMapping(value = "/getOrder", method = RequestMethod.GET)
-    public @ResponseBody byte[] getOrder(HttpServletRequest request) throws Exception{
+    public void getOrder(HttpServletResponse response) throws Exception{
         System.out.println("Send order");
-        return Base64.encode(requestService.sendOrder((String) request.getAttribute("decryptedSession")));
+        byte[] byteListOfOrders = requestService.getOrderListBytes();
+        response.getOutputStream().write(byteListOfOrders);
     }
 
+    /*
     //Update order
     @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
     public void updateOrder(@RequestBody byte[] byte64Data, HttpServletRequest request) throws Exception{
         System.out.println("Try to update order");
-        requestService.updateOrder((String) request.getAttribute("decryptedSession"), byte64Data);
-    }
+        requestService.updateOrder((String) request.getAttribute("decryptedSession"), byte64Data, request);
+    }*/
 }

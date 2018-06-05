@@ -16,15 +16,12 @@ public class User {
     private int id;
     @Column (length = 5000)
     private String publicRSAKey;
-    @Column
-    private String sessionID;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
     public User() {}
 
-    public User(String sessionID, String publicRSAKey) {
-        this.sessionID = sessionID;
+    public User(String publicRSAKey) {
         this.publicRSAKey = publicRSAKey;
     }
 
@@ -34,14 +31,6 @@ public class User {
 
     public void setPublicRSAKey(String publicRSAKey) {
         this.publicRSAKey = publicRSAKey;
-    }
-
-    public String getSessionID() {
-        return sessionID;
-    }
-
-    public void setSessionID(String sessionID) {
-        this.sessionID = sessionID;
     }
 
     public int getId() {
