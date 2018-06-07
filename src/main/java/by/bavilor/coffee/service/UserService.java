@@ -3,6 +3,7 @@ package by.bavilor.coffee.service;
 import by.bavilor.coffee.crypto.Decrypt;
 import by.bavilor.coffee.entity.Order;
 import by.bavilor.coffee.entity.User;
+import by.bavilor.coffee.repository.OrderRepository;
 import by.bavilor.coffee.repository.UserRepository;
 import com.google.gson.Gson;
 import org.bouncycastle.util.encoders.Base64;
@@ -14,6 +15,7 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,13 +30,21 @@ public class UserService {
     private Decrypt decrypt;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrderRepository orderRepository;
 
     public UserService(){}
 
+    //Creating user if it doesn't exist
     public int createUser(PublicKey publicKey){
-        User u = new User(publicKeyToString(publicKey));
-        userRepository.save(u);
-        return u.getId();
+        User user = findUser(publicKey);
+        if(user == null){
+            User u = new User(publicKeyToString(publicKey));
+            userRepository.save(u);
+            return u.getId();
+        }else{
+            return user.getId();
+        }
     }
 
     //Register new order
@@ -45,6 +55,74 @@ public class UserService {
             user.getOrders().add(order);
         }
         userRepository.save(user);
+    }
+
+    //Return user
+    public User getUserByID(int userID){
+        List<User> users = userRepository.findAll();
+        for(User u : users){
+            if(u.getId() == userID){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    //Return users
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    //Find the user
+    public User findUser(PublicKey publicKey){
+        List<User> users = getAllUsers();
+        String publicUserKeyString = publicKeyToString(publicKey);
+        for(User u : users){
+            if(u.getPublicRSAKey().equals(publicUserKeyString)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    //Delete users
+    public void deleteUsers(String[] usersArray){
+        List<User> usersList = userRepository.findAll();
+
+        for(User u : usersList){
+            for(String us : usersArray){
+                if(u.getPublicRSAKey().equals(us)){
+                    List<Order> orders = u.getOrders();
+                    for(Order o : orders){
+                        orderService.deleteOrder(o);
+                    }
+                    userRepository.deleteById(u.getId());
+                }
+            }
+        }
+    }
+
+    //Update user
+    public void updateOrder(User user, String orderBytes){
+        Order[] ordersArray = new Gson().fromJson(orderBytes, Order[].class);
+        List<Order> orders = Arrays.asList(ordersArray);
+        List<Order> ordersFromDB = user.getOrders();
+
+        int size = ordersFromDB.size();
+        user.setOrders(null);
+        userRepository.save(user);
+
+        for(int i = 0; i < size; i++){
+            orderRepository.deleteById(ordersFromDB.get(i).getId());
+        }
+
+        for(Order o : orders){
+            if(o.getAmount() > 0){
+                o.setUser(user);
+                orderService.addOrder(o);
+            }
+        }
+
     }
 
     //Convert a key to string for database
@@ -66,94 +144,4 @@ public class UserService {
         return keyFactory.generatePublic(x509EncodedKeySpec);
     }
 
-    //Return user
-    private User getUserByID(int userID){
-        List<User> users = userRepository.findAll();
-        for(User u : users){
-            if(u.getId() == userID){
-                return u;
-            }
-        }
-        return null;
-    }
-
-    //Return users
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
-    }
-
-
-
-
-
-
-
-
-
-
-
-    /*
-
-
-    //Send order
-    public List<Order> getOrder(String session) throws Exception{
-        if(user == null) {
-            System.out.println("Can't find the user");
-            return null;
-        }else{
-            return user.getOrders();
-        }
-    }
-
-    //Order to json
-    public String orderToJson(String session) throws Exception{
-        List<Order> list = new ArrayList<Order>();
-        for(Order order : getOrder(session)){
-            list.add(new Order(order.getName(), order.getPrice(), order.getAmount()));
-        }
-        return new Gson().toJson(list);
-    }
-
-    //Update order
-    public void updateOrder(List<Order> list,String session){
-        User user = getUserBySession(session);
-        for(int i = 0; i < user.getOrders().size(); i++){
-            //set a all value from list
-            if(list.get(i).getAmount() == user.getOrders().get(i).getAmount()){}
-            else {
-                user.getOrders().get(i).setAmount(list.get(i).getAmount());
-            }
-        }
-
-        //delete records with 0 amount
-        List<Order> notNullAmount = new ArrayList<>();
-        List<Order> nullAmount = new ArrayList<>();
-        for(int j = 0; j < user.getOrders().size(); j++){
-            if(user.getOrders().get(j).getAmount() > 0){
-                notNullAmount.add(user.getOrders().get(j));
-            }else{
-                nullAmount.add(user.getOrders().get(j));
-            }
-        }
-        user.setOrders(notNullAmount);
-        userRepository.save(user);
-
-        if(nullAmount.size() > 0){
-            for(Order o : nullAmount){
-                orderService.deleteOrder(o);
-            }
-        }
-    }
-
-    //Check client app
-    public boolean checkClientApp(String session, String typeApp) {
-        for(User u: getListOfUsers()){
-            if(u.getSessionID().equals(session)){
-                if(u.getClient().equals(typeApp)){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }*/
 }

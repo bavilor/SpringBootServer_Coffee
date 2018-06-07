@@ -17,7 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by bosak on 6/1/2018.
@@ -53,25 +56,18 @@ public class FilterService {
     }
 
     //Form response
-    public byte[] formResponse(PublicKey publicKey, byte[] productListBytes) throws Exception{
-        List<User> users = userService.getAllUsers();
+    public byte[] returnGETResponse(PublicKey publicKey, byte[] productListBytes) throws Exception{
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        for(User u : users){
-            SecretKey secretKey = cryptoController.getSecretKey();
-            byte[] iv = cryptoController.getIV();
+        SecretKey secretKey = cryptoController.getSecretKey();
+        byte[] iv = cryptoController.getIV();
 
-            byte[] encrProductList = cryptoController.encryptData(productListBytes, secretKey, iv);
-            byte[] length = Integer.toString(encrProductList.length).getBytes();
-            byte[] wrappedSecretKey = cryptoController.encryptSecretKey(publicKey, secretKey);
-            byte[] encrIV = cryptoController.encryptIV(publicKey, iv);
-            byte[] encrLength = cryptoController.encryptIV(publicKey, length);
+        byte[] encrProductListBytes = cryptoController.encryptData(productListBytes, secretKey, iv);
+        byte[] wrappedSecretKey = cryptoController.encryptSecretKey(publicKey, secretKey);
+        byte[] encrIV = cryptoController.encryptIV(publicKey, iv);
 
-
-            outputStream.write(wrappedSecretKey);
-            outputStream.write(encrIV);
-            outputStream.write(encrLength);
-            outputStream.write(encrProductList);
-        }
+        outputStream.write(wrappedSecretKey);
+        outputStream.write(encrIV);
+        outputStream.write(encrProductListBytes);
 
         byte[] b64data = Base64.encode(outputStream.toByteArray());
         outputStream.close();
@@ -118,6 +114,62 @@ public class FilterService {
         return userService.createUser(publicKey);
     }
 
+    //Get all orders
+    public byte[] getAllOrders(PublicKey freshPublicKey, byte[] ordersBytes) throws Exception{
+        List<User> users = userService.getAllUsers();
+        List<Order> orders;
+        Map<String, List<Order>> map = new Gson().fromJson(getStringFromBytes(ordersBytes), Map.class);
+        Gson g = new Gson();
+        PublicKey publicKey;
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        for(User u : users) {
+            orders = map.get(u.getPublicRSAKey());
+
+            publicKey = cryptoController.restorePublicKey(
+                    Base64.decode(
+                            u.getPublicRSAKey()));
+
+            SecretKey secretKey = cryptoController.getSecretKey();
+            byte[] iv = cryptoController.getIV();
+
+            byte[] encrOrdersBytes = cryptoController.encryptData(g.toJson(orders).getBytes(), secretKey, iv);
+            byte[] length = Integer.toString(encrOrdersBytes.length).getBytes();
+            byte[] wrappedSecretKey = cryptoController.encryptSecretKey(publicKey, secretKey);
+            byte[] encrIV = cryptoController.encryptIV(publicKey, iv);
+            byte[] encrLength = cryptoController.encryptIV(freshPublicKey, length);
+
+            outputStream.write(wrappedSecretKey);
+            outputStream.write(encrIV);
+            outputStream.write(encrLength);
+            outputStream.write(encrOrdersBytes);
+        }
+        byte[] b64data = Base64.encode(outputStream.toByteArray());
+        outputStream.close();
+        return b64data;
+    }
+
+    //Decrypt data with sign
+    public byte[] decryptDataWithSign(byte[] encrb64Data, PublicKey publicKey) throws Exception{
+        byte[] encrData = Base64.decode(getStringFromBytes(encrb64Data));
+
+        byte[] sign = getByteArray(encrData.length - 256, encrData.length, encrData);
+
+        if(cryptoController.checkSign(sign, "key", publicKey)){
+            byte[] byteSecretKey = getByteArray(0, 256, encrData);
+            byte[] byteIV = cryptoController.decryptIV(getByteArray(256, 512, encrData));
+            byte[] byteUpdateOrder = getByteArray(512, encrData.length - 256, encrData);
+
+            SecretKey secretKey = cryptoController.restoreSecretKey(byteSecretKey);
+            byte[] decrUpdateList = cryptoController.decryptOrder(byteUpdateOrder, secretKey, byteIV);
+
+            return decrUpdateList;
+        }else{
+            System.out.println("Sign error");
+            return null;
+        }
+    }
+
     //Use to separate response on key bytes and data bytes
     private byte[] getByteArray(int start, int end, byte[] data){
         int numOfIter = end - start;
@@ -127,6 +179,15 @@ public class FilterService {
             bytes[i] = data[i + start];
         }
         return bytes;
+    }
+
+    //Convert byte to string
+    private String getStringFromBytes(byte[] data){
+        String s = "";
+        for (byte b : data){
+            s += (char) b;
+        }
+        return s;
     }
 
 }

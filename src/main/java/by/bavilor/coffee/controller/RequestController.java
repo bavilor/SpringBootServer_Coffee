@@ -70,11 +70,17 @@ public class RequestController {
         response.getOutputStream().write(byteListOfOrders);
     }
 
-    /*
+    //Delete users
+    @RequestMapping(value = "/deleteUsers", method = RequestMethod.POST)
+    public void deleteUsers(@RequestBody byte[] userPublicKeysBytes){
+        requestService.deleteUsers(userPublicKeysBytes);
+    }
+
     //Update order
     @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
-    public void updateOrder(@RequestBody byte[] byte64Data, HttpServletRequest request) throws Exception{
+    public void updateOrder(@RequestBody String orderBytes, HttpServletRequest request) throws Exception{
         System.out.println("Try to update order");
-        requestService.updateOrder((String) request.getAttribute("decryptedSession"), byte64Data, request);
-    }*/
+        int userID = (int) request.getAttribute("userID");
+        requestService.updateOrder(orderBytes, userID);
+    }
 }

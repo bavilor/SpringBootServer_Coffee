@@ -42,7 +42,7 @@ public class User {
     }
 
     public void setOrders(List<Order> list){
-        orders = list;
+        this.orders = list;
     }
 
 }

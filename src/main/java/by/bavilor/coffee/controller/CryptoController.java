@@ -12,6 +12,9 @@ import javax.crypto.SecretKey;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.PublicKey;
+import java.security.Signature;
+import java.security.spec.MGF1ParameterSpec;
+import java.security.spec.PSSParameterSpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.List;
 
@@ -81,7 +84,13 @@ public class CryptoController {
         return decrypt.decryptOrder(byteOrder, secretKey, byteIV);
     }
 
-
+    //Check sign for update methods
+    public boolean checkSign(byte[] sign, String keyWord, PublicKey publicKey) throws Exception   {
+        Signature signature = Signature.getInstance("SHA256withRSA");
+        signature.initVerify(publicKey);
+        signature.update(keyWord.getBytes());
+        return signature.verify(sign);
+    }
 
 
 
@@ -118,28 +127,7 @@ public class CryptoController {
 
 
 
-    //Check sign for update methods
-    public boolean checkSign(byte[] sign, String session, PublicKey publicKey, String client) throws Exception   {
 
-        if(client.equals("web")){
-            Signature signature = Signature.getInstance("SHA256withRSA/PSS", "BC");
-            PSSParameterSpec pssSpec = new PSSParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-256"), 128, 1);
-
-            signature.setParameter(pssSpec);
-            signature.initVerify(publicKey);
-            signature.update(session.getBytes());
-
-            return signature.verify(sign);
-        }else{
-            Signature signature = Signature.getInstance("SHA256withRSA");
-
-            signature.initVerify(publicKey);
-            signature.update(session.getBytes());
-
-            return signature.verify(sign);
-        }
-
-    }
 
 
 
