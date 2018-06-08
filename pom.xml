@@ -58,6 +58,11 @@
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.59</version>
         </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.59</version>
+        </dependency>
 <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.session/spring-session &ndash;&gt;
         <dependency>
             <groupId>org.springframework.session</groupId>

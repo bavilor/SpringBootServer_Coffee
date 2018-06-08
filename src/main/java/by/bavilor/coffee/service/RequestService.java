@@ -38,7 +38,7 @@ public class RequestService {
     }
 
     //Return server public key
-    public byte[] getServerPublicKey(){
+    public byte[] getServerPublicKey() throws Exception{
         return cryptoController.getServerPublicKey();
     }
 

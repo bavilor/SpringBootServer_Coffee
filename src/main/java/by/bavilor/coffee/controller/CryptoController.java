@@ -1,5 +1,6 @@
 package by.bavilor.coffee.controller;
 
+import by.bavilor.coffee.component.KeyStorage;
 import by.bavilor.coffee.crypto.Decrypt;
 import by.bavilor.coffee.crypto.Encrypt;
 import by.bavilor.coffee.crypto.KeyGen;
@@ -28,6 +29,8 @@ public class CryptoController {
     private RequestService requestService;
     @Autowired
     private KeyGen keyGen;
+    @Autowired
+    private KeyStorage keyStorage;
     @Autowired
     private Decrypt decrypt;
     @Autowired
@@ -66,8 +69,9 @@ public class CryptoController {
     }
 
     //Get byte server public key
-    public byte[] getServerPublicKey(){
-        return keyGen.getPublicKey().getEncoded();
+    public byte[] getServerPublicKey() throws Exception{
+        KeyPair keyPair = keyStorage.getKeyPairFromKeyStore();
+        return keyPair.getPublic().getEncoded();
     }
 
     //Decrypt IV
@@ -75,6 +79,7 @@ public class CryptoController {
         return decrypt.decryptIV(iv);
     }
 
+    //Restore secret key
     public SecretKey restoreSecretKey(byte[] secretKeyBytes) throws Exception{
         return decrypt.restoreSecretKey(secretKeyBytes);
     }
@@ -91,53 +96,4 @@ public class CryptoController {
         signature.update(keyWord.getBytes());
         return signature.verify(sign);
     }
-
-
-
-   /*
-
-
-    //Restore user public key
-    public PublicKey restoreUserPublicKey(String b64UPK) throws Exception{
-        byte[] bKey = Base64.decode(b64UPK);
-
-
-    }
-
-    //Decrypt session ID by private server key
-    public String decryptSessionID(String jsonSession) throws Exception{
-        byte[] bytes;
-        try{
-            bytes = new Gson().fromJson(jsonSession, byte[].class);
-        }catch (Exception e){
-            bytes = Base64.decode(jsonSession);
-        }
-
-        return decrypt.decryptUserSession(bytes);
-    }
-
-
-
-
-
-    //Decrypt aes key
-    public SecretKey restoreSecretKey(byte[] byteSecretkey) throws Exception{
-       return decrypt.restoreSecretKey(byteSecretkey);
-    }
-
-
-
-
-
-
-
-    //Decrypt IV
-
-
-    //Restore public PSS key
-    public PublicKey restorePssKey(byte[] byteKey) throws Exception{
-        KeyFactory keyFactory  = KeyFactory.getInstance("RSA", "BC");
-        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(byteKey);
-        return keyFactory.generatePublic(keySpecX509);
-    }*/
 }

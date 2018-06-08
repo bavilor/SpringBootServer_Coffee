@@ -12,19 +12,13 @@ import java.security.*;
 @Component
 public class KeyGen {
 
-    private PublicKey publicKey;
-    private PrivateKey privateKey;
-
     public KeyGen() {}
 
     //Generate secret key
-    public void generateAsyncKeys() throws Exception{
+    public KeyPair generateAsyncKeys() throws Exception{
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA", "BC");
         keyPairGenerator.initialize(2048);
-        KeyPair keyPairClient = keyPairGenerator.generateKeyPair();
-
-        privateKey = keyPairClient.getPrivate();
-        publicKey = keyPairClient.getPublic();
+        return keyPairGenerator.generateKeyPair();
     }
 
     //Generate secret key
@@ -44,15 +38,5 @@ public class KeyGen {
 
         return iv;
     }
-
-    public PublicKey getPublicKey() {
-        return publicKey;
-    }
-
-    public PrivateKey getPrivateKey() {
-        return privateKey;
-    }
-
-
 
 }

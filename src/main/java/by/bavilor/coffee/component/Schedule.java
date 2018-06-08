@@ -14,10 +14,12 @@ public class Schedule {
 
     @Autowired
     private KeyGen keyGen;
+    @Autowired
+    private KeyStorage keyStorage;
 
     @Scheduled(fixedDelay = 1440000 * 1000)
     public void UpdateKeys() throws Exception{
-        keyGen.generateAsyncKeys();
+        keyStorage.writeKeyInKeyStore(keyGen.generateAsyncKeys());
         System.out.println("Keys're generated");
     }
 }

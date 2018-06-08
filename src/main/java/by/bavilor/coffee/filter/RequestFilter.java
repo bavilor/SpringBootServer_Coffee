@@ -38,56 +38,54 @@ public class RequestFilter implements Filter {
         String deleteURL = "http://localhost:8080/deleteUsers";
         String updateURL = "http://localhost:8080/updateOrder";
 
-        if(jsonUserPublicKey != null){
-            if(method.equals("GET")){
-                try{
-                    PublicKey userPublicKey = filterService.decodeUPK(jsonUserPublicKey);
-                    RequestWrapper requestWrapper = filterService.getRequestWrapper(request, null);
-                    ResponseWrapper responseWrapper = filterService.getResponseWrapper(response);
+        if(method.equals("GET") && jsonUserPublicKey != null){
+            try{
+                PublicKey userPublicKey = filterService.decodeUPK(jsonUserPublicKey);
+                RequestWrapper requestWrapper = filterService.getRequestWrapper(request, null);
+                ResponseWrapper responseWrapper = filterService.getResponseWrapper(response);
 
-                    filterChain.doFilter(requestWrapper, responseWrapper);
-                    byte[] encrData;
+                filterChain.doFilter(requestWrapper, responseWrapper);
+                byte[] encrData;
 
 
-                    if(request.getRequestURL().toString().equals(ordersURL)){
-                        encrData = filterService.getAllOrders(userPublicKey, responseWrapper.getCopy());
-                    }else{
-                        encrData = filterService.returnGETResponse(userPublicKey, responseWrapper.getCopy());
-                    }
-
-                    response.getOutputStream().write(encrData);
-                }catch (Exception e){
-                    e.printStackTrace();
+                if(request.getRequestURL().toString().equals(ordersURL)){
+                    encrData = filterService.getAllOrders(userPublicKey, responseWrapper.getCopy());
+                }else{
+                    encrData = filterService.returnGETResponse(userPublicKey, responseWrapper.getCopy());
                 }
-            }else if(method.equals("POST")){
-                try{
-                    PublicKey userPublicKey = filterService.decodeUPK(jsonUserPublicKey);
-                    byte[] encrDataBytes = filterService.readEncrData(request);
-                    byte[] decrDataBytes;
 
-                    if(request.getRequestURL().toString().equals(deleteURL)){
-                        decrDataBytes = encrDataBytes;
-                    }else if(request.getRequestURL().toString().equals(updateURL)){
-                        decrDataBytes = filterService.decryptDataWithSign(encrDataBytes, userPublicKey);
-                    }else{
-                        decrDataBytes = filterService.decryptData(encrDataBytes);
-                    }
-
-                    RequestWrapper requestWrapper = filterService.getRequestWrapper(request, decrDataBytes);
-
-                    int userID = filterService.createUser(userPublicKey);
-
-                    requestWrapper.setAttribute("userID", userID);
-
-                    filterChain.doFilter(requestWrapper, servletResponse);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }else if (method.equals("OPTIONS")){
-                filterChain.doFilter(servletRequest, servletResponse);
-            }else{
-                ((HttpServletResponse) servletResponse).sendError(403);
+                response.getOutputStream().write(encrData);
+            }catch (Exception e){
+                e.printStackTrace();
             }
+        }else if(method.equals("POST") && jsonUserPublicKey != null){
+            try{
+                PublicKey userPublicKey = filterService.decodeUPK(jsonUserPublicKey);
+                byte[] encrDataBytes = filterService.readEncrData(request);
+                byte[] decrDataBytes;
+
+                if(request.getRequestURL().toString().equals(deleteURL)){
+                    decrDataBytes = encrDataBytes;
+                }else if(request.getRequestURL().toString().equals(updateURL)){
+                    decrDataBytes = filterService.decryptDataWithSign(encrDataBytes, userPublicKey);
+                }else{
+                    decrDataBytes = filterService.decryptData(encrDataBytes);
+                }
+
+                RequestWrapper requestWrapper = filterService.getRequestWrapper(request, decrDataBytes);
+
+                int userID = filterService.createUser(userPublicKey);
+
+                requestWrapper.setAttribute("userID", userID);
+
+                filterChain.doFilter(requestWrapper, servletResponse);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if (method.equals("OPTIONS")){
+            filterChain.doFilter(servletRequest, servletResponse);
+        }else{
+            ((HttpServletResponse) servletResponse).sendError(403);
         }
     }
 
