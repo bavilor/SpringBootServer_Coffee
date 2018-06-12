@@ -150,12 +150,19 @@ public class FilterService {
     }
 
     //Decrypt data with sign
-    public byte[] decryptDataWithSign(byte[] encrb64Data, PublicKey publicKey) throws Exception{
+    public byte[] decryptDataWithSign(byte[] encrb64Data, PublicKey publicKey, PublicKey pssPublicKey) throws Exception{
         byte[] encrData = Base64.decode(getStringFromBytes(encrb64Data));
 
         byte[] sign = getByteArray(encrData.length - 256, encrData.length, encrData);
 
-        if(cryptoController.checkSign(sign, "key", publicKey)){
+        PublicKey signKey;
+        if(pssPublicKey == null){
+            signKey = publicKey;
+        }else{
+            signKey = pssPublicKey;
+        }
+
+        if(cryptoController.checkSign(sign, "key", signKey)){
             byte[] byteSecretKey = getByteArray(0, 256, encrData);
             byte[] byteIV = cryptoController.decryptIV(getByteArray(256, 512, encrData));
             byte[] byteUpdateOrder = getByteArray(512, encrData.length - 256, encrData);

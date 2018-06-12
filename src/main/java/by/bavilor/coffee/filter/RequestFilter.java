@@ -34,6 +34,8 @@ public class RequestFilter implements Filter {
 
         String method = request.getMethod();
         String jsonUserPublicKey = request.getHeader("key");
+        String jsonUserPssPublicKey = request.getHeader("sign");
+
         String ordersURL = "http://localhost:8080/getOrder";
         String deleteURL = "http://localhost:8080/deleteUsers";
         String updateURL = "http://localhost:8080/updateOrder";
@@ -61,13 +63,19 @@ public class RequestFilter implements Filter {
         }else if(method.equals("POST") && jsonUserPublicKey != null){
             try{
                 PublicKey userPublicKey = filterService.decodeUPK(jsonUserPublicKey);
+                PublicKey userPSSPublicKey = null;
+
+                if(request.getHeader("sign") != null && !(jsonUserPssPublicKey.equals("undefined"))){
+                    userPSSPublicKey = filterService.decodeUPK(request.getHeader("sign"));
+                }
+
                 byte[] encrDataBytes = filterService.readEncrData(request);
                 byte[] decrDataBytes;
 
                 if(request.getRequestURL().toString().equals(deleteURL)){
                     decrDataBytes = encrDataBytes;
                 }else if(request.getRequestURL().toString().equals(updateURL)){
-                    decrDataBytes = filterService.decryptDataWithSign(encrDataBytes, userPublicKey);
+                    decrDataBytes = filterService.decryptDataWithSign(encrDataBytes, userPublicKey, userPSSPublicKey);
                 }else{
                     decrDataBytes = filterService.decryptData(encrDataBytes);
                 }

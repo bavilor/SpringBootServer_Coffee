@@ -91,7 +91,9 @@ public class CryptoController {
 
     //Check sign for update methods
     public boolean checkSign(byte[] sign, String keyWord, PublicKey publicKey) throws Exception   {
-        Signature signature = Signature.getInstance("SHA256withRSA");
+        Signature signature = Signature.getInstance("SHA256withRSA/PSS", "BC");
+        PSSParameterSpec pssSpec = new PSSParameterSpec("SHA-256", "MGF1", new MGF1ParameterSpec("SHA-256"), 128, 1);
+        signature.setParameter(pssSpec);
         signature.initVerify(publicKey);
         signature.update(keyWord.getBytes());
         return signature.verify(sign);
