@@ -49,7 +49,13 @@ public class FilterService {
 
     //Restore user public key
     public PublicKey decodeUPK(String UPKString) throws Exception{
-        byte[] UPKb64 = new Gson().fromJson(UPKString, byte[].class);
+        byte[] UPKb64;
+        try{
+            UPKb64 = new Gson().fromJson(UPKString, byte[].class);
+        }catch (Exception e){
+                UPKb64 = (new Gson().fromJson(UPKString, String.class)).getBytes();
+        }
+
         byte[] UPKbytes = Base64.decode(UPKb64);
 
         return cryptoController.restorePublicKey(UPKbytes);
