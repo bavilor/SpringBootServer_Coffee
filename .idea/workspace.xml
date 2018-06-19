@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9870d51-9af6-45ad-91f3-43ac909c3c9d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/JWK.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/component/JWK.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KeyStore.p12" afterPath="$PROJECT_DIR$/KeyStore.p12" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/component/Schedule.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/component/Schedule.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/CryptoController.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/CryptoController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/RequestController.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/controller/RequestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/RequestFilter.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/filter/RequestFilter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/service/UserService.class" afterPath="$PROJECT_DIR$/target/classes/by/bavilor/coffee/service/UserService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/Schedule.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/component/Schedule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/RequestFilter.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/RequestFilter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -121,10 +108,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RequestService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="586">
+            <state relative-caret-position="901">
               <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
                 <element signature="method#getServerPublicKey#0;class#RequestService#0" expanded="false" />
@@ -137,11 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="111" column="64" lean-forward="false" selection-start-line="111" selection-start-column="64" selection-end-line="111" selection-end-column="64" />
+            <state relative-caret-position="250">
+              <caret line="108" column="52" lean-forward="false" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
               <folding>
                 <element signature="method#createUser#0;class#UserService#0" expanded="false" />
                 <element signature="method#registerOrder#0;class#UserService#0" expanded="false" />
@@ -198,8 +185,8 @@
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/CryptoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/RequestFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/controller/RequestController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/FilterService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java" />
       </list>
     </option>
   </component>
@@ -924,12 +911,12 @@
       <workItem from="1528894585704" duration="3258000" />
       <workItem from="1528961932993" duration="5247000" />
       <workItem from="1529304791081" duration="11713000" />
-      <workItem from="1529393515294" duration="9268000" />
+      <workItem from="1529393515294" duration="9428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167871000" />
+    <option name="totallyTimeSpent" value="168031000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -942,6 +929,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -954,7 +942,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29273504" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29273504" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1339,19 +1327,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="111" column="64" lean-forward="false" selection-start-line="111" selection-start-column="64" selection-end-line="111" selection-end-column="64" />
-          <folding>
-            <element signature="method#createUser#0;class#UserService#0" expanded="false" />
-            <element signature="method#registerOrder#0;class#UserService#0" expanded="false" />
-            <element signature="method#getUserByID#0;class#UserService#0" expanded="false" />
-            <element signature="method#findUser#0;class#UserService#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/filter/RequestFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
@@ -1394,7 +1369,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/RequestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
+        <state relative-caret-position="901">
           <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
             <element signature="method#getServerPublicKey#0;class#RequestService#0" expanded="false" />
@@ -1402,6 +1377,19 @@
             <element signature="method#getOrderListBytes#0;class#RequestService#0" expanded="false" />
             <element signature="method#getStringFromBytes#0;class#RequestService#0" expanded="false" />
             <element signature="method#getByteArray#0;class#RequestService#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/bavilor/coffee/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="108" column="52" lean-forward="false" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
+          <folding>
+            <element signature="method#createUser#0;class#UserService#0" expanded="false" />
+            <element signature="method#registerOrder#0;class#UserService#0" expanded="false" />
+            <element signature="method#getUserByID#0;class#UserService#0" expanded="false" />
+            <element signature="method#findUser#0;class#UserService#0" expanded="false" />
           </folding>
         </state>
       </provider>

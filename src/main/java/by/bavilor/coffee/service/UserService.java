@@ -108,10 +108,6 @@ public class UserService {
         List<Order> orders = Arrays.asList(ordersArray);
         List<Order> ordersFromDB = user.getOrders();
 
-        for(Order o : orders){
-            System.out.println(o.getName() + " " + o.getAmount());
-        }
-
         int size = ordersFromDB.size();
         user.setOrders(null);
         userRepository.save(user);
