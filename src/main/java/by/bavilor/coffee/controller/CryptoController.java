@@ -26,8 +26,6 @@ import java.util.List;
 public class CryptoController {
 
     @Autowired
-    private RequestService requestService;
-    @Autowired
     private KeyGen keyGen;
     @Autowired
     private KeyStorage keyStorage;

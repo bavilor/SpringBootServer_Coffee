@@ -89,6 +89,7 @@ public class RequestFilter implements Filter {
                 filterChain.doFilter(requestWrapper, servletResponse);
             }catch (Exception e){
                 e.printStackTrace();
+                ((HttpServletResponse) servletResponse).sendError(403);
             }
         }else if (method.equals("OPTIONS")){
             filterChain.doFilter(servletRequest, servletResponse);

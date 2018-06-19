@@ -1,33 +1,12 @@
 package by.bavilor.coffee.controller;
 
-import by.bavilor.coffee.component.JWK;
-import by.bavilor.coffee.crypto.KeyGen;
-import by.bavilor.coffee.entity.Order;
-import by.bavilor.coffee.service.ProductService;
-import by.bavilor.coffee.service.RequestService;
-import by.bavilor.coffee.service.UserService;
-import com.google.gson.Gson;
-import org.bouncycastle.util.encoders.Base64;
-import org.hibernate.boot.jaxb.SourceType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.servlet.http.Cookie;
+import by.bavilor.coffee.service.RequestService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigInteger;
-import java.security.KeyFactory;
-import java.security.PublicKey;
-import java.security.spec.RSAPublicKeySpec;
-import java.security.spec.X509EncodedKeySpec;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 
 /**
