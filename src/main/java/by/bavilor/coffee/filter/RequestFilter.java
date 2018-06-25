@@ -39,6 +39,7 @@ public class RequestFilter implements Filter {
         String ordersURL = "http://localhost:8080/getOrder";
         String deleteURL = "http://localhost:8080/deleteUsers";
         String updateURL = "http://localhost:8080/updateOrder";
+        String publicKeyURL = "http://localhost:8080/getServerPublicKey";
 
         if(method.equals("GET") && jsonUserPublicKey != null){
             try{
@@ -52,9 +53,12 @@ public class RequestFilter implements Filter {
 
                 if(request.getRequestURL().toString().equals(ordersURL)){
                     encrData = filterService.getAllOrders(userPublicKey, responseWrapper.getCopy());
+                }else if(request.getRequestURL().toString().equals(publicKeyURL)){
+                    encrData = filterService.encodePublicKey(responseWrapper.getCopy());
                 }else{
                     encrData = filterService.returnGETResponse(userPublicKey, responseWrapper.getCopy());
                 }
+
 
                 response.getOutputStream().write(encrData);
             }catch (Exception e){

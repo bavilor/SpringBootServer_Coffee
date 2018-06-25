@@ -22,7 +22,7 @@ public class RequestController {
     //Response server public key
     @RequestMapping(value = "/getServerPublicKey", method = RequestMethod.GET)
     public void getPublicKey(HttpServletResponse response) throws Exception{
-        System.out  .println("Key was send");
+        System.out.println("Key was send");
         response.getOutputStream().write(requestService.getServerPublicKey());
     }
 

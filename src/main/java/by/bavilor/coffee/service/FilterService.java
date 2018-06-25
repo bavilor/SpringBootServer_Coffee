@@ -53,7 +53,7 @@ public class FilterService {
         try{
             UPKb64 = new Gson().fromJson(UPKString, byte[].class);
         }catch (Exception e){
-                UPKb64 = (new Gson().fromJson(UPKString, String.class)).getBytes();
+            UPKb64 = (new Gson().fromJson(UPKString, String.class)).getBytes();
         }
 
         byte[] UPKbytes = Base64.decode(UPKb64);
@@ -182,6 +182,12 @@ public class FilterService {
             return null;
         }
     }
+
+    //Encode public server key
+    public byte[] encodePublicKey(byte[] exportedPublicKey){
+        return Base64.encode(exportedPublicKey);
+    }
+
 
     //Use to separate response on key bytes and data bytes
     private byte[] getByteArray(int start, int end, byte[] data){
