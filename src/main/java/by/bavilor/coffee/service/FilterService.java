@@ -188,7 +188,6 @@ public class FilterService {
         return Base64.encode(exportedPublicKey);
     }
 
-
     //Use to separate response on key bytes and data bytes
     private byte[] getByteArray(int start, int end, byte[] data){
         int numOfIter = end - start;

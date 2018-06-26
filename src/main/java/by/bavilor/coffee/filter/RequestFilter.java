@@ -1,6 +1,7 @@
 package by.bavilor.coffee.filter;
 
 import by.bavilor.coffee.service.FilterService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -76,9 +77,7 @@ public class RequestFilter implements Filter {
                 byte[] encrDataBytes = filterService.readEncrData(request);
                 byte[] decrDataBytes;
 
-                if(request.getRequestURL().toString().equals(deleteURL)){
-                    decrDataBytes = encrDataBytes;
-                }else if(request.getRequestURL().toString().equals(updateURL)){
+                if(request.getRequestURL().toString().equals(updateURL) || request.getRequestURL().toString().equals(deleteURL)){
                     decrDataBytes = filterService.decryptDataWithSign(encrDataBytes, userPublicKey, userPSSPublicKey);
                 }else{
                     decrDataBytes = filterService.decryptData(encrDataBytes);

@@ -53,6 +53,7 @@ public class RequestController {
     @RequestMapping(value = "/deleteUsers", method = RequestMethod.POST)
     public void deleteUsers(@RequestBody byte[] userPublicKeysBytes){
         requestService.deleteUsers(userPublicKeysBytes);
+        System.out.println("Old public keys was deleted");
     }
 
     //Update order
